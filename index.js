@@ -121,6 +121,6 @@ const sendMessage = async (message) => {
         })
 }
 
-app.listen((process.env.PORT || 5001), () => {
-    console.log('Server is running on port 5001');  
+app.listen((process.env.PORT || 8080), () => {
+    console.log('Server is running on port 8080');  
 });
