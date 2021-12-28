@@ -26,7 +26,59 @@ app.post("/carrito", async (req, res) => {
             "text": "Lo que sea",
             "themeColor": "#FFFF02"
             }
-        sendMessage(message);
+        // sendMessage(message);
+        var payload = []
+        url = "http://35.229.32.178/ipdialbox/api_campaing.php?token=7b69645f6469737472697d2d3230323131313330313435323537&action=insert_json&type_campaing=predictive&campaing=6028"
+        payload.push({nombre_cliente: req.body.firstName, 
+                        apellido_cliente: req.body.LastName, 
+                        tipo_doc: '', 
+                        id_cliente: req.body.document, 
+                        edad: '',
+                        sexo: '',
+                        pais: '',
+                        departamento: '',
+                        ciudad: '',
+                        zona: '',
+                        direccion: '',
+                        opt1: '',
+                        opt2: '',
+                        opt3: '',
+                        opt4: '',
+                        opt5: '',
+                        opt6: '',
+                        opt7: '',
+                        opt8: '',
+                        opt9: '',
+                        opt10: '',
+                        opt11: '',
+                        opt12: "57"+req.body.homePhone, 
+                        tel1: "9"+req.body.homePhone, 
+                        tel2: '',
+                        tel3: '',
+                        tel4: '',
+                        tel5: '',
+                        tel6: '',
+                        tel7: '',
+                        tel8: '',
+                        tel9: '',
+                        tel10: '',
+                        tel_extra: '', 
+                        email: '',
+                        rellamada: '',
+                        rellamada_tel: '',
+                        rellamada_status: '' },);
+        //console.log((payload));
+
+        await axios({
+            method: 'get',
+            url: url,
+            responseType: 'application/json',
+            data: payload
+            }).then(response => {
+                console.log(response.data);
+            }).catch(error => {
+                console.log(error);
+            });
 
         const newcart=([req.body.firstName, 
                         req.body.LastName, 
@@ -40,7 +92,7 @@ app.post("/carrito", async (req, res) => {
             "text": newcart[0]+" "+newcart[1]+" "+newcart[2]+" "+newcart[3]+" "+newcart[4]+" "+newcart[5]+" "+newcart[6],
             "themeColor": "#FFFF02"
             }
-        sendMessage(message);
+        // sendMessage(message);
         res.json(newcart);
     }
     catch (e) {
